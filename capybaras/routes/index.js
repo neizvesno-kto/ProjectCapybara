@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 
+
 /* Страница капибары в бассейне */
 router.get('/capybara_v_basseine', function(req, res, next) {
   res.render('capybara', {
