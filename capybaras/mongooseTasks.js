@@ -1,13 +1,19 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/test');
+mongoose.connect('mongodb://127.0.0.1:27017/test1');
 
-const CapybaraSchema = new mongoose.Schema( {name: String} );
-CapybaraSchema.methods.brew = function() {
-    console.log(this.name + ' ест апельсины');
-}
-const Capybar = mongoose.model('Capybara', CapybaraSchema);    
-const welding = new Capybar({ name: 'Капибара с вилкой' });
+const Capybara = require("./models/capybara").Capybara;
 
-welding.save()
-  .then(() => welding.brew('на голове'))
-  .catch((err) => console.log(err));
+const capybara = new Capybara({
+  title: "Капибара с очками",
+  nick: "Capybara_s_ochkami"
+});
+
+console.log(capybara);
+
+capybara.save()
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
