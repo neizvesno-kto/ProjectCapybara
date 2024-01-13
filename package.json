@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "async": "^3.2.5",
+    "connect-mongo": "^5.1.0",
     "express-session": "^1.17.3"
   }
 }
