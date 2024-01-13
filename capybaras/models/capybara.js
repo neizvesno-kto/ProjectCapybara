@@ -14,4 +14,4 @@ type:Date,
 default:Date.now
 }
 })
-module.exports.Capybara = mongoose.model("Capybara", capybaraSchema)
+module.exports.Capybara = mongoose.model("capybara", capybaraSchema)

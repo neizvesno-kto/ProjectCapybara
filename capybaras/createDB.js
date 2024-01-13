@@ -8,7 +8,7 @@ async function run() {
         var database = client.db("capybaras");
         database.dropDatabase()
         database = client.db("capybaras");
-        const tree_capybaras = database.collection("tree_capybaras");
+        const tree_capybaras = database.collection("capybaras");
         const result = await tree_capybaras.insertMany(data);
         console.log(`${result.insertedCount} documents were inserted`);
     } finally { 
