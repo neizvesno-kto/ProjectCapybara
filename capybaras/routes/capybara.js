@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var Capybara = require("../models/capybara").Capybara
 const async = require("async")
+var checkAuth = require("./../middleware/checkAuth.js")
 
-router.get('/:nick', async function(req, res, next) {
+router.get('/:nick',checkAuth, async (req, res, next) => {
   try {
     const [capybara, capybaras] = await Promise.all([
       Capybara.findOne({ nick: req.params.nick }),
