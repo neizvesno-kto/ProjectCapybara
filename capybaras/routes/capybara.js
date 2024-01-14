@@ -1,37 +1,23 @@
 var express = require('express');
 var router = express.Router();
-var Capybara = require("../models/capybara").Capybara
-const async = require("async")
-var checkAuth = require("./../middleware/checkAuth.js")
-
-router.get('/:nick',checkAuth, async (req, res, next) => {
-  try {
-    const [capybara, capybaras] = await Promise.all([
-      Capybara.findOne({ nick: req.params.nick }),
-      Capybara.find({}, { _id: 0, title: 1, nick: 1 })
-    ]);
-  
-    if (!capybara) {
-      throw new Error("Нет такой капибары");
-    }
-    
-    renderCapybara(res, capybara.title, capybara.avatar, capybara.desc, capybaras);
-  } catch (err) {
-    next(err);
-  }
+var db = require('../mySQLConnect.js');
+router.get('/', function(req, res, next) {
+res.send('<h1>Это экран для списка капибар</h1>');
 });
-
-function renderCapybara(res, title, picture, desc, capybaras) {
-  console.log(capybaras);
-
-  res.render('capybara', {
-    title: title,
-    picture: picture,
-    desc: desc,
-    menu: capybaras
-  });
+router.get("/:nick", function(req, res, next) {
+db.query(`SELECT * FROM capybaras WHERE capybaras.nick = '${req.params.nick}'`, (err, capybaras) => {
+if(err) {
+console.log(err);
+if(err) return next(err)
+} else {
+if(capybaras.length == 0) return next(new Error("Нет такой капибары"))
+var capybara = capybaras[0];
+res.render('capybara', {
+title: capybara.title,
+picture: capybara.avatar,
+desc: capybara.about
+})
 }
-
-
-
+})
+});
 module.exports = router;
