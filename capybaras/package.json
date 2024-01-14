@@ -11,6 +11,7 @@
     "ejs": "~2.6.1",
     "ejs-locals": "^1.0.2",
     "express": "~4.16.1",
+    "express-mysql-session": "^3.0.0",
     "http-errors": "~1.6.3",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.4",
