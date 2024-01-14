@@ -14,13 +14,13 @@ router.get('/:nick', async function(req, res, next) {
       throw new Error("Нет такой капибары");
     }
     
-    renderTree(res, capybara.title, capybara.avatar, capybara.desc, capybaras);
+    renderCapybara(res, capybara.title, capybara.avatar, capybara.desc, capybaras);
   } catch (err) {
     next(err);
   }
 });
 
-function renderTree(res, title, picture, desc, capybaras) {
+function renderCapybara(res, title, picture, desc, capybaras) {
   console.log(capybaras);
 
   res.render('capybara', {
